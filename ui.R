@@ -9,32 +9,19 @@
 
 #-----------------------------------------------------------------
 
-library(shiny)
-library(tidyverse)
-library(sqldf)
-library(shinydashboard)
-library(leaflet)
-library(plotly)
-library(shinythemes)
-library(shinyBS)
-library(DT)
-library(shinycssloaders)
-library(shinyjs)
-library(corrplot)
-library(leafpop)
 
 ui <- dashboardPage(
   skin = "black",
   title = "covid19",
   
   dashboardHeader(
-    title = span("Covid19"),
+    title = span("Biodiversity"),
     titleWidth = 300,
     tags$li(
       a(
         strong("GitHub Codes !!"),
         height = 40,
-        href = "https://github.com/saini1397/covid/tree/master/ShinyApp",
+        href = "https://github.com/saini1397/biodiversity",
         title = "",
         target = "_blank"
       ),
@@ -64,7 +51,7 @@ ui <- dashboardPage(
           div(
             selectInput(
               inputId = "state", label = "Select State",
-              choices = state_choices
+              choices = "dummy"
             )
           ),
           bsButton(
@@ -91,7 +78,7 @@ ui <- dashboardPage(
       tags$link(
         rel = "stylesheet",
         type = "text/css",
-        href = "covid.css"
+        href = "www/bio.css"
       )
     ),
     

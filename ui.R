@@ -1,15 +1,4 @@
 
-#### -----------------------------Header---------------------####
-# Program Name : ui.r
-# Program Purpose : To make shiny User Interface 
-# Created By : Deepak Saini
-# Created Date : Oct-2020
-#
-#
-
-#-----------------------------------------------------------------
-
-
 ui <- dashboardPage(
   skin = "black",
   title = "covid19",
@@ -46,490 +35,155 @@ ui <- dashboardPage(
       menuItem(
         "Occurence Status",
         tabName = "Occurence Status",
-        icon = icon("paint-roller"), br(),
-        div(
+        icon = icon("filter"), 
           div(
             selectInput(
-              inputId = "status", label = "Occurence Status",
-              choices = "dummy"
+              inputId = "s1", label = "",
+              choices = unique(occ$license)
             )
-          ),
-          bsButton(
-            "p1",
-            label = "Everything",
-            icon = icon("hand-point-right"),
-            style = "success"
-          ), br(),
-          div(
-            bsButton(
-              "p2",
-              label = "Present",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
-          ),
-          div(
-            bsButton(
-              "p3",
-              label = "Absent",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
           )
-        )
       ),
       menuItem(
         "License",
         tabName = "License",
-        icon = icon("paint-roller"), br(),
+        icon = icon("filter"),
         div(
-          div(
-            selectInput(
-              inputId = "status", label = "Occurence Status",
-              choices = "dummy"
-            )
-          ),
-          bsButton(
-            "p1",
-            label = "Everything",
-            icon = icon("hand-point-right"),
-            style = "success"
-          ), br(),
-          div(
-            bsButton(
-              "p2",
-              label = "Present",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
-          ),
-          div(
-            bsButton(
-              "p3",
-              label = "Absent",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
+          checkboxGroupInput(
+            inputId = "s2", label = "",
+            choices = unique(occ$license)
           )
         )
       ),
       menuItem(
         "Scientific Name",
         tabName = "Scientific Name",
-        icon = icon("paint-roller"), br(),
+        icon = icon("filter"), 
         div(
-          div(
-            selectInput(
-              inputId = "status", label = "Occurence Status",
-              choices = "dummy"
-            )
-          ),
-          bsButton(
-            "p1",
-            label = "Everything",
-            icon = icon("hand-point-right"),
-            style = "success"
-          ), br(),
-          div(
-            bsButton(
-              "p2",
-              label = "Present",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
-          ),
-          div(
-            bsButton(
-              "p3",
-              label = "Absent",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
+          selectInput(
+            inputId = "s3", label = "",
+            choices = unique(occ$scientificName)
           )
         )
       ),
       menuItem(
         "Basis of Record",
         tabName = "Basis of Record",
-        icon = icon("paint-roller"), br(),
+        icon = icon("filter"), 
         div(
-          div(
-            selectInput(
-              inputId = "status", label = "Occurence Status",
-              choices = "dummy"
-            )
-          ),
-          bsButton(
-            "p1",
-            label = "Everything",
-            icon = icon("hand-point-right"),
-            style = "success"
-          ), br(),
-          div(
-            bsButton(
-              "p2",
-              label = "Present",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
-          ),
-          div(
-            bsButton(
-              "p3",
-              label = "Absent",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
+          selectInput(
+            inputId = "s4", label = "",
+            choices = "dummy"
           )
+          
         )
       ),
       menuItem(
         "Year",
         tabName = "Year",
-        icon = icon("paint-roller"), br(),
+        icon = icon("filter"), 
         div(
-          div(
-            selectInput(
-              inputId = "status", label = "Occurence Status",
-              choices = "dummy"
-            )
-          ),
-          bsButton(
-            "p1",
-            label = "Everything",
-            icon = icon("hand-point-right"),
-            style = "success"
-          ), br(),
-          div(
-            bsButton(
-              "p2",
-              label = "Present",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
-          ),
-          div(
-            bsButton(
-              "p3",
-              label = "Absent",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
+          selectInput(
+            inputId = "s5", label = "",
+            choices = "dummy"
           )
         )
       ),
       menuItem(
         "Month",
         tabName = "Month",
-        icon = icon("paint-roller"), br(),
+        icon = icon("filter"), 
         div(
-          div(
-            selectInput(
-              inputId = "status", label = "Occurence Status",
-              choices = "dummy"
-            )
-          ),
-          bsButton(
-            "p1",
-            label = "Everything",
-            icon = icon("hand-point-right"),
-            style = "success"
-          ), br(),
-          div(
-            bsButton(
-              "p2",
-              label = "Present",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
-          ),
-          div(
-            bsButton(
-              "p3",
-              label = "Absent",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
+          selectInput(
+            inputId = "s6", label = "",
+            choices = "dummy"
           )
         )
       ),
       menuItem(
         "Location",
         tabName = "Location",
-        icon = icon("paint-roller"), br(),
+        icon = icon("filter"), 
         div(
-          div(
-            selectInput(
-              inputId = "status", label = "Occurence Status",
-              choices = "dummy"
-            )
-          ),
-          bsButton(
-            "p1",
-            label = "Everything",
-            icon = icon("hand-point-right"),
-            style = "success"
-          ), br(),
-          div(
-            bsButton(
-              "p2",
-              label = "Present",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
-          ),
-          div(
-            bsButton(
-              "p3",
-              label = "Absent",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
+          selectInput(
+            inputId = "s7", label = "",
+            choices = "dummy"
           )
         )
       ),
       menuItem(
         "Administrative areas (gadm org)",
         tabName = "Administrative areas (gadm org)",
-        icon = icon("paint-roller"), br(),
+        icon = icon("filter"), 
         div(
-          div(
-            selectInput(
-              inputId = "status", label = "Occurence Status",
-              choices = "dummy"
-            )
-          ),
-          bsButton(
-            "p1",
-            label = "Everything",
-            icon = icon("hand-point-right"),
-            style = "success"
-          ), br(),
-          div(
-            bsButton(
-              "p2",
-              label = "Present",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
-          ),
-          div(
-            bsButton(
-              "p3",
-              label = "Absent",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
+          selectInput(
+            inputId = "s8", label = "",
+            choices = "dummy"
           )
         )
       ),
       menuItem(
         "Country or Area",
         tabName = "Country or Area",
-        icon = icon("paint-roller"), br(),
+        icon = icon("filter"), 
         div(
-          div(
-            selectInput(
-              inputId = "status", label = "Occurence Status",
-              choices = "dummy"
-            )
-          ),
-          bsButton(
-            "p1",
-            label = "Everything",
-            icon = icon("hand-point-right"),
-            style = "success"
-          ), br(),
-          div(
-            bsButton(
-              "p2",
-              label = "Present",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
-          ),
-          div(
-            bsButton(
-              "p3",
-              label = "Absent",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
+          selectInput(
+            inputId = "s9", label = "",
+            choices = "dummy"
           )
         )
       ),
       menuItem(
         "Continent",
         tabName = "Continent",
-        icon = icon("paint-roller"), br(),
+        icon = icon("filter"), 
         div(
-          div(
-            selectInput(
-              inputId = "status", label = "Occurence Status",
-              choices = "dummy"
-            )
-          ),
-          bsButton(
-            "p1",
-            label = "Everything",
-            icon = icon("hand-point-right"),
-            style = "success"
-          ), br(),
-          div(
-            bsButton(
-              "p2",
-              label = "Present",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
-          ),
-          div(
-            bsButton(
-              "p3",
-              label = "Absent",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
+          selectInput(
+            inputId = "s10", label = "",
+            choices = "dummy"
           )
         )
       ),
       menuItem(
         "Dataset",
         tabName = "Dataset",
-        icon = icon("paint-roller"), br(),
+        icon = icon("filter"), 
         div(
-          div(
-            selectInput(
-              inputId = "status", label = "Occurence Status",
-              choices = "dummy"
-            )
-          ),
-          bsButton(
-            "p1",
-            label = "Everything",
-            icon = icon("hand-point-right"),
-            style = "success"
-          ), br(),
-          div(
-            bsButton(
-              "p2",
-              label = "Present",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
-          ),
-          div(
-            bsButton(
-              "p3",
-              label = "Absent",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
+          selectInput(
+            inputId = "s11", label = "",
+            choices = "dummy"
           )
         )
       ),
       menuItem(
         "Publisher",
         tabName = "Publisher",
-        icon = icon("paint-roller"), br(),
+        icon = icon("filter"), 
         div(
-          div(
-            selectInput(
-              inputId = "status", label = "Occurence Status",
-              choices = "dummy"
-            )
-          ),
-          bsButton(
-            "p1",
-            label = "Everything",
-            icon = icon("hand-point-right"),
-            style = "success"
-          ), br(),
-          div(
-            bsButton(
-              "p2",
-              label = "Present",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
-          ),
-          div(
-            bsButton(
-              "p3",
-              label = "Absent",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
+          selectInput(
+            inputId = "s12", label = "",
+            choices = "dummy"
           )
         )
       ),
       menuItem(
         "IUCN Global Red List History",
         tabName = "IUCN Global Red List History",
-        icon = icon("paint-roller"), br(),
+        icon = icon("filter"), 
         div(
-          div(
-            selectInput(
-              inputId = "status", label = "Occurence Status",
-              choices = "dummy"
-            )
-          ),
-          bsButton(
-            "p1",
-            label = "Everything",
-            icon = icon("hand-point-right"),
-            style = "success"
-          ), br(),
-          div(
-            bsButton(
-              "p2",
-              label = "Present",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
-          ),
-          div(
-            bsButton(
-              "p3",
-              label = "Absent",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
+          selectInput(
+            inputId = "s13", label = "",
+            choices = "dummy"
           )
         )
       ),
       menuItem(
         "Issues and Flags",
         tabName = "Issues and Flags",
-        icon = icon("paint-roller"), br(),
+        icon = icon("filter"), 
         div(
-          div(
-            selectInput(
-              inputId = "status", label = "Occurence Status",
-              choices = "dummy"
-            )
-          ),
-          bsButton(
-            "p1",
-            label = "Everything",
-            icon = icon("hand-point-right"),
-            style = "success"
-          ), br(),
-          div(
-            bsButton(
-              "p2",
-              label = "Present",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
-          ),
-          div(
-            bsButton(
-              "p3",
-              label = "Absent",
-              icon = icon("hand-point-right"),
-              style = "success"
-            ), br()
+          selectInput(
+            inputId = "s13", label = "",
+            choices = "dummy"
           )
         )
       )
@@ -558,21 +212,19 @@ ui <- dashboardPage(
               useShinyjs(),
               title = "Table",
               
-              div(column(
-                width = 12, div(valueBoxOutput("vbox1")),
-                div(valueBoxOutput("vbox2"))
-              )),
-              div(column(
-                width = 12, div(valueBoxOutput("vbox3")),
-                div(valueBoxOutput("vbox4"))
-              ))
+              withSpinner(
+                dataTableOutput("data_table"),
+                type = 4,
+                color = "#d33724",
+                size = 0.7
+              )
             ),
             
             tabPanel(
               useShinyjs(),
               title = "Gallery",
               withSpinner(
-                dataTableOutput("data_table"),
+                verbatimTextOutput("h"),
                 type = 4,
                 color = "#d33724",
                 size = 0.7
@@ -582,7 +234,7 @@ ui <- dashboardPage(
               useShinyjs(),
               title = "Map",
               withSpinner(
-                leafletOutput("plotmap_output", height = 600),
+                verbatimTextOutput("a"),
                 type = 4,
                 color = "#d33724",
                 size = 0.7
@@ -592,7 +244,7 @@ ui <- dashboardPage(
               useShinyjs(),
               title = "Taxonomy",
               withSpinner(
-                leafletOutput("plotmap_output", height = 600),
+                verbatimTextOutput("b"),
                 type = 4,
                 color = "#d33724",
                 size = 0.7
@@ -602,7 +254,7 @@ ui <- dashboardPage(
               useShinyjs(),
               title = "Metrices",
               withSpinner(
-                leafletOutput("plotmap_output", height = 600),
+                verbatimTextOutput("c"),
                 type = 4,
                 color = "#d33724",
                 size = 0.7
@@ -612,7 +264,7 @@ ui <- dashboardPage(
               useShinyjs(),
               title = "Download",
               withSpinner(
-                leafletOutput("plotmap_output", height = 600),
+                verbatimTextOutput("d"),
                 type = 4,
                 color = "#d33724",
                 size = 0.7
@@ -623,93 +275,6 @@ ui <- dashboardPage(
       )
     )),
     
-    hidden(div(id = "p1div", fluidRow(
-      div(
-        column(
-          width = 12,
-          tabBox(
-            width = NULL,
-            height = 400,
-            tabPanel(
-              useShinyjs(),
-              title = "Forecasting Confirmed Cases (14 Days)",
-              withSpinner(
-                plotlyOutput("plotp1_output", height = "100%", width = "100%"),
-                type = 4,
-                color = "#d33724",
-                size = 0.7
-              )
-            )
-          )
-        )
-      )
-    ))),
-    
-    hidden(div(id = "p2div", fluidRow(
-      div(
-        column(
-          width = 12,
-          tabBox(
-            width = NULL,
-            height = 400,
-            tabPanel(
-              useShinyjs(),
-              title = "Forecasting Death Cases (14 Days)",
-              withSpinner(
-                plotlyOutput("plotp2_output", height = "100%", width = "100%"),
-                type = 4,
-                color = "#d33724",
-                size = 0.7
-              )
-            )
-          )
-        )
-      )
-    ))) , 
-    
-    hidden(div(id = "summarydiv", fluidRow(
-      div(
-        column(
-          width = 12,
-          tabBox(
-            width = NULL,
-            height = 400,
-            tabPanel(
-              useShinyjs(),
-              title = "Daily Cumulative Cases",
-              withSpinner(
-                plotlyOutput("plotsummary_output", height = "100%", width = "100%"),
-                type = 4,
-                color = "#d33724",
-                size = 0.7
-              )
-            )
-          )
-        )
-      )
-    ))) ,
-    
-    hidden(div(id = "comparisondiv", fluidRow(
-      div(
-        column(
-          width = 12,
-          tabBox(
-            width = NULL,
-            height = 400,
-            tabPanel(
-              useShinyjs(),
-              title = "Compare Top Ten States by Cases",
-              withSpinner(
-                plotlyOutput("plotcomparison_output", height = "100%", width = "100%"),
-                type = 4,
-                color = "#d33724",
-                size = 0.7
-              )
-            )
-          )
-        )
-      )
-    )))
     
   )
 )

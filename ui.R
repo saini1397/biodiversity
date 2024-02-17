@@ -1,7 +1,7 @@
 
 ui <- dashboardPage(
   skin = "black",
-  title = "covid19",
+  title = "Biodiversity",
   
   dashboardHeader(
     title = span("Biodiversity"),

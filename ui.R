@@ -36,12 +36,12 @@ ui <- dashboardPage(
         "Occurence Status",
         tabName = "Occurence Status",
         icon = icon("filter"), 
-          div(
-            selectInput(
-              inputId = "s1", label = "",
-              choices = unique(occ$license)
-            )
+        div(
+          selectInput(
+            inputId = "s1", label = "",
+            choices = unique(occ$license)
           )
+        )
       ),
       menuItem(
         "License",
@@ -50,7 +50,8 @@ ui <- dashboardPage(
         div(
           checkboxGroupInput(
             inputId = "s2", label = "",
-            choices = unique(occ$license)
+            choices = unique(occ$license),
+            selected = unique(occ$license)[1:5]
           )
         )
       ),
@@ -61,9 +62,10 @@ ui <- dashboardPage(
         div(
           selectInput(
             inputId = "s3", label = "",
-            choices = unique(occ$scientificName)
-          )
-        )
+            choices = unique(occ$scientificName),
+            selected = unique(occ$scientificName)[1:5],
+            multiple = TRUE
+          ))
       ),
       menuItem(
         "Basis of Record",
@@ -72,7 +74,9 @@ ui <- dashboardPage(
         div(
           selectInput(
             inputId = "s4", label = "",
-            choices = "dummy"
+            choices = unique(occ$basisOfRecord),
+            selected = unique(occ$basisOfRecord)[1:5],
+            multiple = TRUE
           )
           
         )
@@ -82,20 +86,10 @@ ui <- dashboardPage(
         tabName = "Year",
         icon = icon("filter"), 
         div(
-          selectInput(
-            inputId = "s5", label = "",
-            choices = "dummy"
-          )
-        )
-      ),
-      menuItem(
-        "Month",
-        tabName = "Month",
-        icon = icon("filter"), 
-        div(
-          selectInput(
-            inputId = "s6", label = "",
-            choices = "dummy"
+          dateRangeInput(
+            inputId="s5", label = "",
+            start = min(occ$eventDate),
+            end = max(occ$eventDate)
           )
         )
       ),
@@ -105,7 +99,7 @@ ui <- dashboardPage(
         icon = icon("filter"), 
         div(
           selectInput(
-            inputId = "s7", label = "",
+            inputId = "s6", label = "",
             choices = "dummy"
           )
         )
@@ -116,7 +110,7 @@ ui <- dashboardPage(
         icon = icon("filter"), 
         div(
           selectInput(
-            inputId = "s8", label = "",
+            inputId = "s7", label = "",
             choices = "dummy"
           )
         )
@@ -127,7 +121,7 @@ ui <- dashboardPage(
         icon = icon("filter"), 
         div(
           selectInput(
-            inputId = "s9", label = "",
+            inputId = "s8", label = "",
             choices = "dummy"
           )
         )
@@ -138,7 +132,7 @@ ui <- dashboardPage(
         icon = icon("filter"), 
         div(
           selectInput(
-            inputId = "s10", label = "",
+            inputId = "s9", label = "",
             choices = "dummy"
           )
         )
@@ -149,7 +143,7 @@ ui <- dashboardPage(
         icon = icon("filter"), 
         div(
           selectInput(
-            inputId = "s11", label = "",
+            inputId = "s10", label = "",
             choices = "dummy"
           )
         )
@@ -160,7 +154,7 @@ ui <- dashboardPage(
         icon = icon("filter"), 
         div(
           selectInput(
-            inputId = "s12", label = "",
+            inputId = "s11", label = "",
             choices = "dummy"
           )
         )
@@ -171,18 +165,7 @@ ui <- dashboardPage(
         icon = icon("filter"), 
         div(
           selectInput(
-            inputId = "s13", label = "",
-            choices = "dummy"
-          )
-        )
-      ),
-      menuItem(
-        "Issues and Flags",
-        tabName = "Issues and Flags",
-        icon = icon("filter"), 
-        div(
-          selectInput(
-            inputId = "s13", label = "",
+            inputId = "s12", label = "",
             choices = "dummy"
           )
         )

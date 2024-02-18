@@ -51,7 +51,7 @@ ui <- dashboardPage(
           checkboxGroupInput(
             inputId = "s2", label = "",
             choices = unique(occ$license),
-            selected = unique(occ$license)[1:5]
+            selected = unique(occ$license)
           )
         )
       ),
@@ -63,7 +63,7 @@ ui <- dashboardPage(
           selectInput(
             inputId = "s3", label = "",
             choices = unique(occ$scientificName),
-            selected = unique(occ$scientificName)[1:5],
+            selected = unique(occ$scientificName),
             multiple = TRUE
           ))
       ),
@@ -75,7 +75,7 @@ ui <- dashboardPage(
           selectInput(
             inputId = "s4", label = "",
             choices = unique(occ$basisOfRecord),
-            selected = unique(occ$basisOfRecord)[1:5],
+            selected = unique(occ$basisOfRecord),
             multiple = TRUE
           )
           
@@ -216,20 +216,12 @@ ui <- dashboardPage(
             tabPanel(
               useShinyjs(),
               title = "Taxonomy",
-              br(),div(
-                column(width=5,style="border:1px solid black;","TAXONOMIC DISTRIBUTION OF OCCURRENCES",withSpinner(
-                plotlyOutput("tax1", height = "100%", width = "90%"),
+              br(),div(style="border:1px solid black;","TAXONOMIC DISTRIBUTION OF OCCURRENCES",withSpinner(
+                highchartOutput("tax1", height = "100%", width = "90%"),
                 type = 4,
                 color = "#d33724",
                 size = 0.7
-              )), column(width=1),
-              
-              column(width=6,style="border:1px solid black;","TAXONOMIC DISTRIBUTION OF OCCURRENCES",withSpinner(
-                plotlyOutput("tax2", height = "100%", width = "90%"),
-                type = 4,
-                color = "#d33724",
-                size = 0.7
-              ))
+              )
               ),
               
               br(),br(),br(),br(),div(style="border:1px solid black;","TAXONOMIC DISTRIBUTION TABLE OF OCCURRENCES",
@@ -239,7 +231,7 @@ ui <- dashboardPage(
                                         selected = "Overall"
                                       ))  ),
                                       div(withSpinner(
-                dataTableOutput("tax3", height = "100%", width = "90%"),
+                dataTableOutput("tax2", height = "100%", width = "90%"),
                 type = 4,
                 color = "#d33724",
                 size = 0.7

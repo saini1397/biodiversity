@@ -1,5 +1,5 @@
 #List All Libraries needed
-my_packages = c("systemfonts","expss","purrr","DT","testthat","shiny","tidyverse","sqldf","leaflet","shinydashboard","plotly","shinythemes","shinyBS","DT","shinycssloaders","shinyjs","corrplot","shinyWidgets","stringr","foreign")
+my_packages = c("highcharter","htmlwidgets","systemfonts","expss","purrr","DT","testthat","shiny","tidyverse","sqldf","leaflet","shinydashboard","plotly","shinythemes","shinyBS","DT","shinycssloaders","shinyjs","corrplot","shinyWidgets","stringr","foreign")
 
 install_if_missing = function(p) {
   if (p %in% rownames(installed.packages()) == FALSE) {
@@ -30,6 +30,7 @@ occ = readRDS("occurence.rds") %>%  mutate(coordinates=paste0(latitudeDecimal,"N
 
   
 mul = readRDS("multimedia.rds")
+
 
 
 

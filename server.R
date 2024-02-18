@@ -244,7 +244,7 @@ server <- (function(input, output) {
   })
   
   observeEvent(input$tax3in, {
-    output$tax3 <- renderDataTable({
+    output$tax2 <- renderDataTable({
       taxt()  %>% 
         datatable(filter = 'top',  extensions = 'Buttons',options = list(
           scrollX = TRUE,
@@ -257,6 +257,99 @@ server <- (function(input, output) {
   })
   
   # End of taxonomy table
+  
+  
+  
+  # taxonomy PIE charct with drill down
+
+    output$tax1 <- renderHighchart({
+      
+      
+      #subset columns (not all needed)
+      df<-occd() %>%
+        select(kingdom,class,family,scientificName,vernacularName)
+      
+      
+      by_type<- df %>%
+        group_by(kingdom) %>%
+        summarise(occurences = n())
+      
+      pie_chart<-by_type %>%
+        #set up highchart object
+        hchart("pie", 
+               #mapping for pie chart
+               hcaes(x = kingdom, y = occurences, drilldown=kingdom), 
+               name="Occurences") %>%
+               hc_title(text="By Kingdom Type")
+      
+      
+      donut_chart<-pie_chart %>%
+        hc_plotOptions(pie = list(innerSize="70%"))
+      
+      
+      by_subtype1<- df %>%
+        group_by(kingdom,class) %>%
+        summarise(occurences = n()) %>%
+        #create nested data at parent level 
+        group_nest(kingdom)  %>%
+        mutate(
+          #id should be set to parent level
+          id = kingdom,
+          #type specifies chart type
+          type = "column",
+          #drilldown data should contain arguments for chart - use purrr to map
+          data = purrr::map(data, mutate, name = class, y  = occurences),
+          data = purrr::map(data, list_parse)
+        )
+      
+      drilldown_chart<-donut_chart %>%
+        hc_drilldown(
+          #map to data
+          series = list_parse(by_subtype1),
+          allowPointDrilldown = TRUE,
+          #set stylings of data labels that offer drill down views
+          activeDataLabelStyle = list(
+            textDecoration="none",
+            color="black"
+          )
+        ) 
+      
+      
+      final_chart<-drilldown_chart %>%
+        #relabel x Axis
+        hc_xAxis(title = list(text="Type")) %>%
+        #relabel y Axis
+        hc_yAxis(title = list(text="# of Occurences")) %>%
+        #reorder column charts by y Axis
+        hc_plotOptions(column = list(
+          dataSorting = list(enabled=TRUE)
+        )
+        ) %>%
+        #customize drilldown & drillup events
+        hc_chart(
+          events = list(
+            drilldown = JS(
+              "function(){
+               this.title.update({text: 'By Class Sub Type'})
+               this.update({
+                  xAxis:{visible:true},
+                  yAxis:{visible:true}
+               })
+               }"
+            ),
+            drillup =  JS("function() {
+              this.title.update({text: 'By Kingdom name Type'})
+              this.update({
+                xAxis:{visible:false},
+                yAxis:{visible:false}
+               })
+             }")
+          ))
+      
+      final_chart
+        
+    })
+
   
 })  # End of Server function
 

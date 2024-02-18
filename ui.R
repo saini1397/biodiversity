@@ -233,9 +233,10 @@ ui <- dashboardPage(
               ),
               
               br(),br(),br(),br(),div(style="border:1px solid black;","TAXONOMIC DISTRIBUTION TABLE OF OCCURRENCES",
-                                      div( column(width=3,br(),"Select The Class from Dropdown: ") ,column(width=4, selectInput(
+                                      div( column(width=4,br(),"Select Grouping Category from the Dropdown: ") ,column(width=4, selectInput(
                                         inputId = "tax3in", label = "",
-                                        choices = c("Scientific Name","Kingdom","Class","Family","Species","Overall")
+                                        choices = c("Scientific Name","Kingdom","Class","Family","Species","Overall"),
+                                        selected = "Overall"
                                       ))  ),
                                       div(withSpinner(
                 dataTableOutput("tax3", height = "100%", width = "90%"),

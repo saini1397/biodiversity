@@ -248,13 +248,15 @@ server <- (function(input, output) {
       taxt()  %>% 
         datatable(filter = 'top',  extensions = 'Buttons',options = list(
           scrollX = TRUE,
-          pageLength = 25, autoWidth = TRUE,
+          pageLength = 25, 
+          autoWidth = FALSE,
           dom = 'Bfrtip',
           buttons = c('copy', 'csv', 'excel','pdf')
         ))
     })
   })
   
+  # End of taxonomy table
   
 })  # End of Server function
 

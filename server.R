@@ -116,7 +116,7 @@ server <- (function(input, output) {
     
     bar3 <- occd()
     
-    bar3 <- sqldf("select distinct collectionCode,count(*) as totalocc from bar
+    bar3 <- sqldf("select distinct collectionCode,count(*) as totalocc from bar3
               group by collectionCode
               order by collectionCode")
     
@@ -188,6 +188,72 @@ server <- (function(input, output) {
   })
   
   
+  
+  # Taxonomy table.
+  
+  
+  taxt <- reactive({
+    
+    if (grepl("Scientific",input$tax3in)){  
+      occd()  %>%  
+        group_by(scientificName) %>% 
+        summarise(Occurences=n()) %>% 
+        ungroup()  
+      
+    }
+    
+    else if (grepl("Kingdom",input$tax3in)){  
+      occd()  %>%  
+        group_by(kingdom) %>% 
+        summarise(Occurences=n()) %>% 
+        ungroup()  
+      
+    } 
+    
+    else if (grepl("Class",input$tax3in)){  
+      occd()  %>%  
+        group_by(class) %>% 
+        summarise(Occurences=n()) %>% 
+        ungroup() 
+      
+    }
+    
+    else if (grepl("Family",input$tax3in)){  
+      occd()  %>%  
+        group_by(family) %>% 
+        summarise(Occurences=n()) %>% 
+        ungroup() 
+      
+    }
+    else if (grepl("Species",input$tax3in)){  
+      occd()  %>%  
+        group_by(taxonRank) %>% 
+        summarise(Occurences=n()) %>% 
+        ungroup() 
+      
+    }
+    else if (grepl("Overall",input$tax3in)){  
+      occd()  %>%  
+        group_by(scientificName,kingdom,class,family,taxonRank) %>% 
+        summarise(Occurences=n()) %>% 
+        ungroup() 
+      
+    }
+    
+    
+  })
+  
+  observeEvent(input$tax3in, {
+    output$tax3 <- renderDataTable({
+      taxt()  %>% 
+        datatable(filter = 'top',  extensions = 'Buttons',options = list(
+          scrollX = TRUE,
+          pageLength = 25, autoWidth = TRUE,
+          dom = 'Bfrtip',
+          buttons = c('copy', 'csv', 'excel','pdf')
+        ))
+    })
+  })
   
   
 })  # End of Server function

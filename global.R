@@ -14,10 +14,19 @@ invisible(sapply(my_packages, install_if_missing))
 lapply(my_packages, require, character.only = TRUE)
 
 # Get the data
-# source("R/getdata.R")
 
 occ = readRDS("occurence.rds") %>%  mutate(coordinates=paste0(latitudeDecimal,"N, ",longitudeDecimal,"E"),
-                                           adminarea=paste0(country," - ",countryCode)) 
+                                           adminarea=paste0(country," - ",countryCode),
+                                           class=str_to_title(word(higherClassification, 1,sep="\\|")),
+                                           taxonRank = if_else(is.na(taxonRank), "Unknown", taxonRank),
+                                           kingdom = if_else(is.na(kingdom), "Unknown", kingdom),
+                                           class = if_else(is.na(class), "Unknown", class),
+                                           scientificName = if_else(is.na(scientificName), "Unknown", scientificName),
+                                           vernacularName = if_else(is.na(vernacularName), "Unknown", vernacularName),
+                                           family = if_else(is.na(family), "Unknown", family)
+                                           
+)
+
   
 mul = readRDS("multimedia.rds")
 

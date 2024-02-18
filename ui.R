@@ -216,12 +216,33 @@ ui <- dashboardPage(
             tabPanel(
               useShinyjs(),
               title = "Taxonomy",
-              withSpinner(
-                verbatimTextOutput("b"),
+              br(),div(
+                column(width=5,style="border:1px solid black;","TAXONOMIC DISTRIBUTION OF OCCURRENCES",withSpinner(
+                plotlyOutput("tax1", height = "100%", width = "90%"),
                 type = 4,
                 color = "#d33724",
                 size = 0.7
-              )
+              )), column(width=1),
+              
+              column(width=6,style="border:1px solid black;","TAXONOMIC DISTRIBUTION OF OCCURRENCES",withSpinner(
+                plotlyOutput("tax2", height = "100%", width = "90%"),
+                type = 4,
+                color = "#d33724",
+                size = 0.7
+              ))
+              ),
+              
+              br(),br(),br(),br(),div(style="border:1px solid black;","TAXONOMIC DISTRIBUTION TABLE OF OCCURRENCES",
+                                      div( column(width=3,br(),"Select The Class from Dropdown: ") ,column(width=4, selectInput(
+                                        inputId = "tax3in", label = "",
+                                        choices = c("Scientific Name","Kingdom","Class","Family","Species","Overall")
+                                      ))  ),
+                                      div(withSpinner(
+                dataTableOutput("tax3", height = "100%", width = "90%"),
+                type = 4,
+                color = "#d33724",
+                size = 0.7
+              )))
             ),
             tabPanel(
               useShinyjs(),

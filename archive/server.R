@@ -31,22 +31,7 @@ server <- (function(input, output,session) {
   # Leaflet Map Output 
   
   
-  # Leaflet Map Output 
-  
-  output$plotmap_output <- renderLeaflet({
-    # Read data for Map
-    map <- occd() %>% 
-      mutate(Long=`Longitude Decimal`,Lat=`Latitude Decimal`,type="Occurence") %>% 
-      group_by(Country,Long,Lat) %>% 
-      summarise(totalocc=n_distinct(Identifier)) %>% 
-      ungroup()
-
-    
-    leaflet() %>%
-      addTiles() %>% 
-      addMarkers(data=map,lng=map$Long, lat=map$Lat, popup=map$country) 
-
-  })
+ 
   
   
   # For metrices

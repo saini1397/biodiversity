@@ -197,16 +197,7 @@ ui <- dashboardPage(
               ))
               )
             ),
-            tabPanel(
-              useShinyjs(),
-              title = "Map",
-              withSpinner(
-                leafletOutput("plotmap_output", height = 600),
-                type = 4,
-                color = "#d33724",
-                size = 0.7
-              )
-            ),
+            mod_bio_map_ui("bio_map_ui_1"),
             tabPanel(
               useShinyjs(),
               title = "Taxonomy",

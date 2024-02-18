@@ -1,4 +1,4 @@
-server <- (function(input, output) {
+server <- (function(input, output,session) {
   
  ## Reactive dataframe based on user input selection
   
@@ -13,20 +13,22 @@ server <- (function(input, output) {
     
        
     })
+ 
   
+  observeEvent(input$colselect, {
+    
   # Output Table
   output$data_table <- renderDataTable({
-    occd()  %>% select(scientificName,country,coordinates,eventDate,basisOfRecord,occurrenceID,
-                    kingdom,higherClassification,individualCount,family,taxonRank)  %>% 
+    occd()  %>% select(one_of(input$colselect))  %>% 
       datatable(filter = 'top',  extensions = 'Buttons',options = list(
         scrollX = TRUE,
-        pageLength = 25, autoWidth = TRUE,
+        pageLength = 25, autoWidth = FALSE,
         dom = 'Bfrtip',
         buttons = c('copy', 'csv', 'excel','pdf')
       ))
   })
   
-
+})
   
   # Leaflet Map Output 
   
@@ -234,7 +236,7 @@ server <- (function(input, output) {
     }
     else if (grepl("Overall",input$tax3in)){  
       occd()  %>%  
-        group_by(scientificName,kingdom,class,family,taxonRank) %>% 
+        group_by(kingdom,class,family,scientificName,taxonRank) %>% 
         summarise(Occurences=n()) %>% 
         ungroup() 
       
@@ -350,7 +352,31 @@ server <- (function(input, output) {
         
     })
     
- 
+    
+    # Reset on click of Reset Button on the top.
+    observeEvent(input$reset, {
+      shinyjs::reset("sidebar")
+    })
+    
+    
+    observe({
+      
+      shinyWidgets::updatePickerInput(session, "colselect",
+                                      choices = c(names(occd())),
+                                      selected = c(names(occd())[names(occd()) %in% c("scientificName","country","coordinates","eventDate","basisOfRecord","occurrenceID","kingdom","higherClassification","individualCount","family","taxonRank")]  )   ,
+                                      options = shinyWidgets::pickerOptions(
+                                        actionsBox = TRUE,
+                                        title = "Select Columns to Display",
+                                        header = "Select Columns"
+                                      ),
+                                      choicesOpt = list(
+                                        style = rep(("color: black; background: lightgrey; font-weight: bold;"),1000))
+      )
+      
+    })
+    
+    
+    
 
   
 })  # End of Server function

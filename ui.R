@@ -21,28 +21,17 @@ ui <- dashboardPage(
   dashboardSidebar(
     width = 300,
     div(class = "inlay", style = "height:15px;width:100%;background-color:#ecf0f5"),
-    sidebarMenu(
+    div(id="sidebar",sidebarMenu(
       div(
         id = "sidebar_button",
         bsButton(
-          inputId = "home",
-          label = "Home",
+          inputId = "reset",
+          label = "Reset",
           icon = icon("home"),
           style = "danger"
         )
       ),
       div(class = "inlay", style = "height:15px;width:100%;background-color:#ecf0f5"),
-      menuItem(
-        "Occurence Status",
-        tabName = "Occurence Status",
-        icon = icon("filter"), 
-        div(
-          selectInput(
-            inputId = "s1", label = "",
-            choices = unique(occ$license)
-          )
-        )
-      ),
       menuItem(
         "License",
         tabName = "License",
@@ -160,7 +149,7 @@ ui <- dashboardPage(
           )
         )
       )
-    )
+    ))
   ),
   
   dashboardBody(
@@ -184,12 +173,28 @@ ui <- dashboardPage(
             tabPanel(
               useShinyjs(),
               title = "Table",
-              
+              div(
+                div(column(width=4,
+                                                                                 
+                                                                                 shinyWidgets::pickerInput(
+                                                                                   inputId = "colselect", label = "Select Columns:",
+                                                                                   choices = c("scientificName","country","coordinates"),
+                                                                                   multiple = TRUE,
+                                                                                   selected=NULL,
+                                                                                   options = shinyWidgets::pickerOptions(
+                                                                                     actionsBox = TRUE,
+                                                                                     title = "Select Columns to Display",
+                                                                                   ),width = "100%"
+                                                                                 )
+                                                                                 
+                                                                                 )),br(),br(),br(),
+                div(
               withSpinner(
                 dataTableOutput("data_table"),
                 type = 4,
                 color = "#d33724",
                 size = 0.7
+              ))
               )
             ),
             tabPanel(
@@ -256,13 +261,6 @@ ui <- dashboardPage(
                 size = 0.7
               )),br(),
               
-            ),
-            tabPanel(widht="100%",
-              useShinyjs(),
-              title = "Download Data Source",
-              div(column(width=12,
-                includeHTML("www/login.htm")
-              ))
             )
           )
         )

@@ -192,27 +192,6 @@ ui <- dashboardPage(
                 size = 0.7
               )
             ),
-            
-            tabPanel(
-              useShinyjs(),
-              title = "Gallery",
-              div(style="border:1px solid black;","Gallery Pictures",div(
-                
-                  column(width=4,br(),"Select Number of Gallery Pictures to display: ") ,column(width=4, selectInput(
-                  inputId = "galin", label = "",
-                  choices = c(5,10,50,100,200),
-                  selected = 10
-                ))  
-                
-                
-              ),div(withSpinner(
-                dataTableOutput("gal", height = "100%", width = "90%"),
-                type = 4,
-                color = "#d33724",
-                size = 0.7
-              ))
-              )
-            ),
             tabPanel(
               useShinyjs(),
               title = "Map",
@@ -277,6 +256,13 @@ ui <- dashboardPage(
                 size = 0.7
               )),br(),
               
+            ),
+            tabPanel(widht="100%",
+              useShinyjs(),
+              title = "Download Data Source",
+              div(column(width=12,
+                includeHTML("www/login.htm")
+              ))
             )
           )
         )

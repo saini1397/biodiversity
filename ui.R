@@ -94,13 +94,17 @@ ui <- dashboardPage(
         )
       ),
       menuItem(
-        "Location",
-        tabName = "Location",
+        "Coordinates",
+        tabName = "Coordinates",
         icon = icon("filter"), 
         div(
-          selectInput(
-            inputId = "s6", label = "",
-            choices = "dummy"
+          sliderInput(
+            inputId = "s6", label = "Select Latitude",
+            min = min(occ$latitudeDecimal), max = max(occ$latitudeDecimal), value = max(occ$latitudeDecimal)
+          ),
+          sliderInput(
+            inputId = "s61", label = "Select Longitude",
+            min = min(occ$longitudeDecimal), max = max(occ$longitudeDecimal), value = max(occ$longitudeDecimal)
           )
         )
       ),
@@ -110,8 +114,10 @@ ui <- dashboardPage(
         icon = icon("filter"), 
         div(
           selectInput(
-            inputId = "s7", label = "",
-            choices = "dummy"
+            inputId = "s7", label = "Administrative areas",
+            choices = unique(occ$adminarea),
+            selected = unique(occ$adminarea),
+            multiple = TRUE
           )
         )
       ),
@@ -122,7 +128,9 @@ ui <- dashboardPage(
         div(
           selectInput(
             inputId = "s8", label = "",
-            choices = "dummy"
+            choices = unique(occ$country),
+            selected = unique(occ$country),
+            multiple = TRUE
           )
         )
       ),
@@ -133,18 +141,9 @@ ui <- dashboardPage(
         div(
           selectInput(
             inputId = "s9", label = "",
-            choices = "dummy"
-          )
-        )
-      ),
-      menuItem(
-        "Dataset",
-        tabName = "Dataset",
-        icon = icon("filter"), 
-        div(
-          selectInput(
-            inputId = "s10", label = "",
-            choices = "dummy"
+            choices = unique(occ$continent),
+            selected = unique(occ$continent),
+            multiple = TRUE
           )
         )
       ),
@@ -154,19 +153,10 @@ ui <- dashboardPage(
         icon = icon("filter"), 
         div(
           selectInput(
-            inputId = "s11", label = "",
-            choices = "dummy"
-          )
-        )
-      ),
-      menuItem(
-        "IUCN Global Red List History",
-        tabName = "IUCN Global Red List History",
-        icon = icon("filter"), 
-        div(
-          selectInput(
-            inputId = "s12", label = "",
-            choices = "dummy"
+            inputId = "s10", label = "",
+            choices = unique(occ$rightsHolder),
+            selected = unique(occ$rightsHolder),
+            multiple = TRUE
           )
         )
       )
@@ -217,7 +207,7 @@ ui <- dashboardPage(
               useShinyjs(),
               title = "Map",
               withSpinner(
-                verbatimTextOutput("a"),
+                leafletOutput("plotmap_output", height = 600),
                 type = 4,
                 color = "#d33724",
                 size = 0.7
@@ -236,22 +226,33 @@ ui <- dashboardPage(
             tabPanel(
               useShinyjs(),
               title = "Metrices",
-              withSpinner(
-                verbatimTextOutput("c"),
+              br(),div(style="border:1px solid black;","Number of Occurences by Month",withSpinner(
+                plotlyOutput("bar1", height = "100%", width = "90%"),
                 type = 4,
                 color = "#d33724",
                 size = 0.7
-              )
-            ),
-            tabPanel(
-              useShinyjs(),
-              title = "Download",
-              withSpinner(
-                verbatimTextOutput("d"),
+              )),br(),br(),br(),br(),div(style="border:1px solid black;","Number of Occurences per Basis of Record",withSpinner(
+                plotlyOutput("pie1", height = "100%", width = "90%"),
                 type = 4,
                 color = "#d33724",
                 size = 0.7
-              )
+              )),br(),br(),br(),br(),br(),div(style="border:1px solid black;","Number of Occurences by Year",withSpinner(
+                plotlyOutput("line1", height = "100%", width = "90%"),
+                type = 4,
+                color = "#d33724",
+                size = 0.7
+              )),br(),br(),br(),br(),br(),div(style="border:1px solid black;","Number of Occurences by License",withSpinner(
+                plotlyOutput("bar2", height = "100%", width = "90%"),
+                type = 4,
+                color = "#d33724",
+                size = 0.7
+              )),br(),br(),br(),br(),br(),div(style="border:1px solid black;","Total Number of Occurences by Dataset",withSpinner(
+                plotlyOutput("bar3", height = "100%", width = "90%"),
+                type = 4,
+                color = "#d33724",
+                size = 0.7
+              )),br(),
+              
             )
           )
         )

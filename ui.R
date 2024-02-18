@@ -39,8 +39,8 @@ ui <- dashboardPage(
         div(
           checkboxGroupInput(
             inputId = "s2", label = "",
-            choices = unique(occ$license),
-            selected = unique(occ$license)
+            choices = unique(occ$License),
+            selected = unique(occ$License)
           )
         )
       ),
@@ -51,8 +51,8 @@ ui <- dashboardPage(
         div(
           selectInput(
             inputId = "s3", label = "",
-            choices = unique(occ$scientificName),
-            selected = unique(occ$scientificName),
+            choices = unique(occ$`Scientific Name`),
+            selected = unique(occ$`Scientific Name`),
             multiple = TRUE
           ))
       ),
@@ -63,8 +63,8 @@ ui <- dashboardPage(
         div(
           selectInput(
             inputId = "s4", label = "",
-            choices = unique(occ$basisOfRecord),
-            selected = unique(occ$basisOfRecord),
+            choices = unique(occ$`Basis Of Record`),
+            selected = unique(occ$`Basis Of Record`),
             multiple = TRUE
           )
           
@@ -77,8 +77,8 @@ ui <- dashboardPage(
         div(
           dateRangeInput(
             inputId="s5", label = "",
-            start = min(occ$eventDate),
-            end = max(occ$eventDate)
+            start = min(occ$`Event Date`),
+            end = max(occ$`Event Date`)
           )
         )
       ),
@@ -89,11 +89,11 @@ ui <- dashboardPage(
         div(
           sliderInput(
             inputId = "s6", label = "Select Latitude",
-            min = min(occ$latitudeDecimal), max = max(occ$latitudeDecimal), value = max(occ$latitudeDecimal)
+            min = min(occ$`Latitude Decimal`), max = max(occ$`Latitude Decimal`), value = max(occ$`Latitude Decimal`)
           ),
           sliderInput(
             inputId = "s61", label = "Select Longitude",
-            min = min(occ$longitudeDecimal), max = max(occ$longitudeDecimal), value = max(occ$longitudeDecimal)
+            min = min(occ$`Longitude Decimal`), max = max(occ$`Longitude Decimal`), value = max(occ$`Longitude Decimal`)
           )
         )
       ),
@@ -104,8 +104,8 @@ ui <- dashboardPage(
         div(
           selectInput(
             inputId = "s7", label = "Administrative areas",
-            choices = unique(occ$adminarea),
-            selected = unique(occ$adminarea),
+            choices = unique(occ$`Administrative Area`),
+            selected = unique(occ$`Administrative Area`),
             multiple = TRUE
           )
         )
@@ -117,8 +117,8 @@ ui <- dashboardPage(
         div(
           selectInput(
             inputId = "s8", label = "",
-            choices = unique(occ$country),
-            selected = unique(occ$country),
+            choices = unique(occ$Country),
+            selected = unique(occ$Country),
             multiple = TRUE
           )
         )
@@ -130,8 +130,8 @@ ui <- dashboardPage(
         div(
           selectInput(
             inputId = "s9", label = "",
-            choices = unique(occ$continent),
-            selected = unique(occ$continent),
+            choices = unique(occ$Continent),
+            selected = unique(occ$Continent),
             multiple = TRUE
           )
         )
@@ -143,8 +143,8 @@ ui <- dashboardPage(
         div(
           selectInput(
             inputId = "s10", label = "",
-            choices = unique(occ$rightsHolder),
-            selected = unique(occ$rightsHolder),
+            choices = unique(occ$`Rights Holder`),
+            selected = unique(occ$`Rights Holder`),
             multiple = TRUE
           )
         )
@@ -178,7 +178,7 @@ ui <- dashboardPage(
                                                                                  
                                                                                  shinyWidgets::pickerInput(
                                                                                    inputId = "colselect", label = "Select Columns:",
-                                                                                   choices = c("scientificName","country","coordinates"),
+                                                                                   choices = c("Scientific Name","Country","Coordinates"),
                                                                                    multiple = TRUE,
                                                                                    selected=NULL,
                                                                                    options = shinyWidgets::pickerOptions(

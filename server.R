@@ -3,14 +3,12 @@ server <- (function(input, output,session) {
  ## Reactive dataframe based on user input selection
   
   occd<-reactive ({
-        occ %>% filter(license %in% input$s2) %>%  filter(scientificName %in% input$s3)  %>%
-        filter(basisOfRecord %in% input$s4) %>% filter(eventDate %in% input$s5) %>% 
-        filter( between(latitudeDecimal, min(latitudeDecimal), input$s6))  %>% 
-        filter( between(longitudeDecimal, min(longitudeDecimal), input$s61)) %>% 
-        filter(adminarea %in% input$s7) %>% filter(country %in% input$s8) %>% 
-        filter(continent %in% input$s9)  %>% filter(rightsHolder %in% input$s10)
-    
-    
+        occ %>% filter(License %in% input$s2) %>%  filter(`Scientific Name` %in% input$s3)  %>%
+        filter(`Basis Of Record` %in% input$s4) %>% filter(`Event Date` %in% input$s5) %>% 
+        filter( between(`Latitude Decimal`, min(`Latitude Decimal`), input$s6))  %>% 
+        filter( between(`Longitude Decimal`, min(`Longitude Decimal`), input$s61)) %>% 
+        filter(`Administrative Area` %in% input$s7) %>% filter(Country %in% input$s8) %>% 
+        filter(Continent %in% input$s9)  %>% filter(`Rights Holder` %in% input$s10)
        
     })
  
@@ -25,7 +23,7 @@ server <- (function(input, output,session) {
         pageLength = 25, autoWidth = FALSE,
         dom = 'Bfrtip',
         buttons = c('copy', 'csv', 'excel','pdf')
-      ))
+      )) 
   })
   
 })
@@ -38,14 +36,14 @@ server <- (function(input, output,session) {
   output$plotmap_output <- renderLeaflet({
     # Read data for Map
     map <- occd() %>% 
-      mutate(Long=longitudeDecimal,Lat=latitudeDecimal,type="Occurence") %>% 
-      group_by(country,Long,Lat) %>% 
-      summarise(totalocc=n_distinct(id)) %>% 
+      mutate(Long=`Longitude Decimal`,Lat=`Latitude Decimal`,type="Occurence") %>% 
+      group_by(Country,Long,Lat) %>% 
+      summarise(totalocc=n_distinct(Identifier)) %>% 
       ungroup()
 
     
     leaflet() %>%
-      addTiles() %>%  # Add default OpenStreetMap map tiles
+      addTiles() %>% 
       addMarkers(data=map,lng=map$Long, lat=map$Lat, popup=map$country) 
 
   })
@@ -56,7 +54,7 @@ server <- (function(input, output,session) {
   output$bar1 <- renderPlotly({
     
     bar <- occd() %>% 
-      mutate(month=format(eventDate,format="%B") )
+      mutate(month=format(`Event Date` ,format="%B") )
     
     bar1 <- sqldf("select distinct month,count(*) as totalocc from bar
               group by month
@@ -88,14 +86,14 @@ server <- (function(input, output,session) {
     
     bar2 <- occd() 
     
-    bar2 <- sqldf("select distinct license,count(*) as totalocc from bar2
-              group by license
-              order by license")
+    bar2 <- sqldf("select distinct License,count(*) as totalocc from bar2
+              group by License
+              order by License")
     
     
     plotly::plot_ly(
       data = bar2,
-      x = ~license,
+      x = ~License,
       y = ~totalocc,
       type = "bar",
       marker = list(color = "yellow")
@@ -118,14 +116,14 @@ server <- (function(input, output,session) {
     
     bar3 <- occd()
     
-    bar3 <- sqldf("select distinct collectionCode,count(*) as totalocc from bar3
-              group by collectionCode
-              order by collectionCode")
+    bar3 <- sqldf("select distinct `Collection Code`,count(*) as totalocc from bar3
+              group by `Collection Code`
+              order by `Collection Code`")
     
     
     plotly::plot_ly(
       data = bar3,
-      x = ~collectionCode,
+      x = ~`Collection Code`,
       y = ~totalocc,
       type = "bar",
       marker = list(color = "red")
@@ -148,14 +146,14 @@ server <- (function(input, output,session) {
   output$pie1 <- renderPlotly({
     
     pie1 <- occd() %>% 
-      group_by(basisOfRecord) %>% 
+      group_by(`Basis Of Record`) %>% 
       summarise(totalocc=n()) %>% 
       ungroup()
   
     
     plotly::plot_ly(
       data = pie1,
-      labels = ~basisOfRecord, 
+      labels = ~`Basis Of Record`, 
       values = ~totalocc,
       type = "pie"
     ) %>%
@@ -168,7 +166,7 @@ server <- (function(input, output,session) {
   output$line1 <- renderPlotly({
     
     line <- occd() %>% 
-      mutate(year=format(eventDate,format="%Y") )
+      mutate(year=format(`Event Date`,format="%Y") )
     
     line1 <- sqldf("select distinct year,count(*) as totalocc from line
               group by year
@@ -198,7 +196,7 @@ server <- (function(input, output,session) {
     
     if (grepl("Scientific",input$tax3in)){  
       occd()  %>%  
-        group_by(scientificName) %>% 
+        group_by(`Scientific Name`) %>% 
         summarise(Occurences=n()) %>% 
         ungroup()  
       
@@ -206,7 +204,7 @@ server <- (function(input, output,session) {
     
     else if (grepl("Kingdom",input$tax3in)){  
       occd()  %>%  
-        group_by(kingdom) %>% 
+        group_by(Kingdom) %>% 
         summarise(Occurences=n()) %>% 
         ungroup()  
       
@@ -214,7 +212,7 @@ server <- (function(input, output,session) {
     
     else if (grepl("Class",input$tax3in)){  
       occd()  %>%  
-        group_by(class) %>% 
+        group_by(Class) %>% 
         summarise(Occurences=n()) %>% 
         ungroup() 
       
@@ -222,21 +220,21 @@ server <- (function(input, output,session) {
     
     else if (grepl("Family",input$tax3in)){  
       occd()  %>%  
-        group_by(family) %>% 
+        group_by(Family) %>% 
         summarise(Occurences=n()) %>% 
         ungroup() 
       
     }
     else if (grepl("Species",input$tax3in)){  
       occd()  %>%  
-        group_by(taxonRank) %>% 
+        group_by(`Taxon Rank`) %>% 
         summarise(Occurences=n()) %>% 
         ungroup() 
       
     }
     else if (grepl("Overall",input$tax3in)){  
       occd()  %>%  
-        group_by(kingdom,class,family,scientificName,taxonRank) %>% 
+        group_by(Kingdom,Class,Family,`Scientific Name` ,`Taxon Rank`) %>% 
         summarise(Occurences=n()) %>% 
         ungroup() 
       
@@ -269,18 +267,18 @@ server <- (function(input, output,session) {
       
       #subset columns (not all needed)
       df<-occd() %>%
-        select(kingdom,class,family,scientificName,vernacularName)
+        select(Kingdom,Class,Family,`Scientific Name`,`Vernacular Name`)
       
       
       by_type<- df %>%
-        group_by(kingdom) %>%
+        group_by(Kingdom) %>%
         summarise(occurences = n())
       
       pie_chart<-by_type %>%
         #set up highchart object
         hchart("pie", 
                #mapping for pie chart
-               hcaes(x = kingdom, y = occurences, drilldown=kingdom), 
+               hcaes(x = Kingdom, y = occurences, drilldown=Kingdom), 
                name="Occurences") %>%
                hc_title(text="By Kingdom Type")
       
@@ -290,17 +288,17 @@ server <- (function(input, output,session) {
       
       
       by_subtype1<- df %>%
-        group_by(kingdom,class) %>%
+        group_by(Kingdom,Class) %>%
         summarise(occurences = n()) %>%
         #create nested data at parent level 
-        group_nest(kingdom)  %>%
+        group_nest(Kingdom)  %>%
         mutate(
           #id should be set to parent level
-          id = kingdom,
+          id = Kingdom,
           #type specifies chart type
           type = "column",
           #drilldown data should contain arguments for chart - use purrr to map
-          data = purrr::map(data, mutate, name = class, y  = occurences),
+          data = purrr::map(data, mutate, name = Class, y  = occurences),
           data = purrr::map(data, list_parse)
         )
       
@@ -363,7 +361,7 @@ server <- (function(input, output,session) {
       
       shinyWidgets::updatePickerInput(session, "colselect",
                                       choices = c(names(occd())),
-                                      selected = c(names(occd())[names(occd()) %in% c("scientificName","country","coordinates","eventDate","basisOfRecord","occurrenceID","kingdom","higherClassification","individualCount","family","taxonRank")]  )   ,
+                                      selected = c(names(occd())[names(occd()) %in% c("Scientific Name","Country","Coordinates","Event Date","`Basis Of Record`","`Occurrence Identifier`","Kingdom","Higher Classification","Individual Count","Family","Taxon Rank")]  )   ,
                                       options = shinyWidgets::pickerOptions(
                                         actionsBox = TRUE,
                                         title = "Select Columns to Display",

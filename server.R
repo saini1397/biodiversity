@@ -349,6 +349,8 @@ server <- (function(input, output) {
       final_chart
         
     })
+    
+ 
 
   
 })  # End of Server function

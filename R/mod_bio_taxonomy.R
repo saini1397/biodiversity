@@ -1,3 +1,10 @@
+#' Biodiversity Taxonomy Panel Output
+#'
+#' @description
+#' Biodiversity Taxonomy Panel Output
+#'
+#' @rdname mod_bio_taxonomy
+
 mod_bio_taxonomy_ui <- function(id) {
   ns <- NS(id)
   tabPanel(

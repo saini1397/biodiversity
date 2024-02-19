@@ -1,17 +1,27 @@
-# List All Libraries needed
-my_packages <- c("rsconnect","usethis", "devtools", "testthat", "labelled", "highcharter", "htmlwidgets", "expss", "purrr", "DT", "testthat", "shiny", "tidyverse", "sqldf", "leaflet", "shinydashboard", "plotly", "shinythemes", "shinyBS", "DT", "shinycssloaders", "shinyjs", "corrplot", "shinyWidgets", "stringr", "foreign")
-
-#install_if_missing <- function(p) {
-#  if (p %in% rownames(installed.packages()) == FALSE) {
-#    install.packages(p, dependencies = TRUE)
-#  }
-#}
-
-#invisible(sapply(my_packages, install_if_missing))
-
-# (.packages()) - To check the loaded libraries.
-# Load All Required Libraries
-lapply(my_packages, library, character.only = TRUE)
+# Load All Libraries needed
+library(usethis)
+library(devtools)
+library(testthat)
+library(labelled)
+library(highcharter)
+library(htmlwidgets)
+library(expss)
+library(purrr)
+library(DT)
+library(testthat)
+library(tidyverse)
+library(sqldf)
+library(leaflet)
+library(shinydashboard)
+library(plotly)
+library(shinythemes)
+library(shinyBS)
+library(DT)
+library(shinycssloaders)
+library(shinyjs)
+library(shinyWidgets)
+library(stringr)
+library(shiny)
 
 # Get the data
 

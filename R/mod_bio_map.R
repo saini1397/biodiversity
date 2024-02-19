@@ -14,7 +14,7 @@ mod_bio_map_ui <- function(id) {
     withSpinner(
       leafletOutput(ns("plotmap_output"), height = 600),
       type = 4,
-      color = "#d33724",
+      color = "#2E8B57",
       size = 0.7
     )
   )

@@ -14,7 +14,7 @@ mod_bio_taxonomy_ui <- function(id) {
     br(), div(style = "border:1px solid black;", "TAXONOMIC DISTRIBUTION OF OCCURRENCES", withSpinner(
       highchartOutput(ns("tax1"), height = "100%", width = "90%"),
       type = 4,
-      color = "#d33724",
+      color = "#2E8B57",
       size = 0.7
     )),
     br(), br(), br(), br(), div(
@@ -27,7 +27,7 @@ mod_bio_taxonomy_ui <- function(id) {
       div(withSpinner(
         dataTableOutput(ns("tax2"), height = "100%", width = "90%"),
         type = 4,
-        color = "#d33724",
+        color = "#2E8B57",
         size = 0.7
       ))
     )

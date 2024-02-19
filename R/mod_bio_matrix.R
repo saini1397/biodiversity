@@ -14,27 +14,27 @@ mod_bio_matrix_ui <- function(id) {
     br(), div(style = "border:1px solid black;", "Number of Occurences by Month", withSpinner(
       plotlyOutput(ns("bar1"), height = "100%", width = "90%"),
       type = 4,
-      color = "#d33724",
+      color = "#2E8B57",
       size = 0.7
     )), br(), br(), br(), br(), div(style = "border:1px solid black;", "Number of Occurences per Basis of Record", withSpinner(
       plotlyOutput(ns("pie1"), height = "100%", width = "90%"),
       type = 4,
-      color = "#d33724",
+      color = "#2E8B57",
       size = 0.7
     )), br(), br(), br(), br(), br(), div(style = "border:1px solid black;", "Number of Occurences by Year", withSpinner(
       plotlyOutput(ns("line1"), height = "100%", width = "90%"),
       type = 4,
-      color = "#d33724",
+      color = "#2E8B57",
       size = 0.7
     )), br(), br(), br(), br(), br(), div(style = "border:1px solid black;", "Number of Occurences by License", withSpinner(
       plotlyOutput(ns("bar2"), height = "100%", width = "90%"),
       type = 4,
-      color = "#d33724",
+      color = "#2E8B57",
       size = 0.7
     )), br(), br(), br(), br(), br(), div(style = "border:1px solid black;", "Total Number of Occurences by Dataset", withSpinner(
       plotlyOutput(ns("bar3"), height = "100%", width = "90%"),
       type = 4,
-      color = "#d33724",
+      color = "#2E8B57",
       size = 0.7
     )), br(),
   )

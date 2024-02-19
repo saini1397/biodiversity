@@ -29,7 +29,7 @@ mod_bio_table_ui <- function(id) {
         withSpinner(
           dataTableOutput(ns("data_table")),
           type = 4,
-          color = "#d33724",
+          color = "#2E8B57",
           size = 0.7
         )
       )

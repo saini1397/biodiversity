@@ -16,7 +16,7 @@ The Biodiversity Application is deployed to shinyapps.io. Link to Application is
 https://cdiscdata.shinyapps.io/biodiversity/
 ```
 
-The Biodiversity Application package could be accessed locally by cloning the [GitHub repository](https://github.com/saini1397/ .
+The Biodiversity Application package could be accessed locally by cloning the [GitHub repository](https://github.com/saini1397/biodiversity
 
 ## Steps to Run the Application locally after downloading zip codes from Github Repository
 

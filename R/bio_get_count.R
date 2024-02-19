@@ -11,6 +11,7 @@ bio_get_count <- function(df, group_var, var) {
 
   df %>%
     group_by(!!group_var) %>%
-    summarise(n = n()) %>%
+    summarise(n = n()) %>% 
+    arrange(desc(n)) %>% 
     ungroup()
 }

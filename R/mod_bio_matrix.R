@@ -76,7 +76,7 @@ mod_bio_matrix_server <- function(id) {
         x = ~month,
         y = ~n,
         type = "bar",
-        marker = list(color = "green")
+        marker = list(color = "cyan")
       ) %>%
         plotly::layout(
           yaxis = list(title = "Total Number of Occurences"),
@@ -137,7 +137,7 @@ mod_bio_matrix_server <- function(id) {
         x = ~`Collection Code`,
         y = ~n,
         type = "bar",
-        marker = list(color = "red")
+        marker = list(color = "purple")
       ) %>%
         plotly::layout(
           yaxis = list(title = "Total No of Occurences"),

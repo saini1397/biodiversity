@@ -92,6 +92,7 @@ mod_bio_taxonomy_server <- function(id) {
         occd() %>%
           group_by(Kingdom, Class, Family, `Scientific Name`, `Taxon Rank`) %>%
           summarise(n = n()) %>%
+          arrange(desc(n)) %>% 
           ungroup()
       }
     })

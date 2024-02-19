@@ -4,6 +4,7 @@ source("R/mod_bio_map.R")
 source("R/mod_bio_sidebar.R")
 source("R/mod_bio_taxonomy.R")
 source("R/mod_bio_matrix.R")
+source("R/bio_get_count.R")
 #source("R/mod_bio_login.R")
 
 ui <- dashboardPage(

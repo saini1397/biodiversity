@@ -49,47 +49,49 @@ mod_bio_taxonomy_server <- function(id) {
     taxt <- reactive({
       
       if (grepl("Scientific",input$tax3in)){  
-        occd()  %>%  
-          group_by(`Scientific Name`) %>% 
-          summarise(Occurences=n()) %>% 
-          ungroup()  
+        taxdata <- occd()  
+          
+        bio_get_count(df=taxdata,
+                        group_var=`Scientific Name`)
+       
         
       }
       
       else if (grepl("Kingdom",input$tax3in)){  
-        occd()  %>%  
-          group_by(Kingdom) %>% 
-          summarise(Occurences=n()) %>% 
-          ungroup()  
+        taxdata <- occd() 
+        
+        bio_get_count(df=taxdata,
+                      group_var=Kingdom)
+        
+    
         
       } 
       
       else if (grepl("Class",input$tax3in)){  
-        occd()  %>%  
-          group_by(Class) %>% 
-          summarise(Occurences=n()) %>% 
-          ungroup() 
+        taxdata <- occd()  
+        bio_get_count(df=taxdata,
+                      group_var=Class)
         
       }
       
       else if (grepl("Family",input$tax3in)){  
-        occd()  %>%  
-          group_by(Family) %>% 
-          summarise(Occurences=n()) %>% 
-          ungroup() 
+        taxdata <- occd() 
+        bio_get_count(df=taxdata,
+                      group_var=Family)
         
       }
       else if (grepl("Species",input$tax3in)){  
-        occd()  %>%  
-          group_by(`Taxon Rank`) %>% 
-          summarise(Occurences=n()) %>% 
-          ungroup() 
+        taxdata <- occd()  
+        
+        bio_get_count(df=taxdata,
+                      group_var=`Taxon Rank`)
+        
         
       }
       else if (grepl("Overall",input$tax3in)){  
         occd()  %>%  
           group_by(Kingdom,Class,Family,`Scientific Name` ,`Taxon Rank`) %>% 
-          summarise(Occurences=n()) %>% 
+          summarise(n=n()) %>% 
           ungroup() 
         
       }
@@ -99,7 +101,7 @@ mod_bio_taxonomy_server <- function(id) {
     
     observeEvent(input$tax3in, {
       output$tax2 <- renderDataTable({
-        taxt()  %>% 
+        taxt() %>% rename(Occurences=n) %>% 
           datatable(filter = 'top',  extensions = 'Buttons',options = list(
             scrollX = TRUE,
             pageLength = 25, 

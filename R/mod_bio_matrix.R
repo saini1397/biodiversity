@@ -54,16 +54,17 @@ mod_bio_matrix_server <- function(id) {
     output$bar1 <- renderPlotly({
       bar <- occd() %>%
         mutate(month = format(`Event Date`, format = "%B"))
+      
+      
+      bar1 <- bio_get_count(df=bar,
+                            group_var=month)
 
-      bar1 <- sqldf("select distinct month,count(*) as totalocc from bar
-              group by month
-              order by month")
 
 
       plotly::plot_ly(
         data = bar1,
         x = ~month,
-        y = ~totalocc,
+        y = ~n,
         type = "bar",
         marker = list(color = "green")
       ) %>%
@@ -84,15 +85,14 @@ mod_bio_matrix_server <- function(id) {
     output$bar2 <- renderPlotly({
       bar2 <- occd()
 
-      bar2 <- sqldf("select distinct License,count(*) as totalocc from bar2
-              group by License
-              order by License")
+      bar2 <- bio_get_count(df=bar2,
+                            group_var=License)
 
 
       plotly::plot_ly(
         data = bar2,
         x = ~License,
-        y = ~totalocc,
+        y = ~n,
         type = "bar",
         marker = list(color = "yellow")
       ) %>%
@@ -113,15 +113,15 @@ mod_bio_matrix_server <- function(id) {
     output$bar3 <- renderPlotly({
       bar3 <- occd()
 
-      bar3 <- sqldf("select distinct `Collection Code`,count(*) as totalocc from bar3
-              group by `Collection Code`
-              order by `Collection Code`")
+      
+      bar3 <- bio_get_count(df=bar3,
+                            group_var=`Collection Code`)
 
 
       plotly::plot_ly(
         data = bar3,
         x = ~`Collection Code`,
-        y = ~totalocc,
+        y = ~n,
         type = "bar",
         marker = list(color = "red")
       ) %>%
@@ -141,16 +141,16 @@ mod_bio_matrix_server <- function(id) {
 
 
     output$pie1 <- renderPlotly({
-      pie1 <- occd() %>%
-        group_by(`Basis Of Record`) %>%
-        summarise(totalocc = n()) %>%
-        ungroup()
+      pie1 <- occd() 
+        
+      pie1 <- bio_get_count(df=pie1,
+                            group_var=`Basis Of Record`)
 
 
       plotly::plot_ly(
         data = pie1,
         labels = ~`Basis Of Record`,
-        values = ~totalocc,
+        values = ~n,
         type = "pie"
       ) %>%
         plotly::layout(

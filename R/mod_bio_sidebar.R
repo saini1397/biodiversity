@@ -25,7 +25,7 @@ mod_bio_sidebar_ui <- function(id) {
       menuItem(
         "License",
         tabName = "License",
-        icon = icon("filter"),
+        icon = icon("tencent-weibo"),
         div(
           checkboxGroupInput(
             inputId = ns("s2"), label = "",
@@ -50,7 +50,7 @@ mod_bio_sidebar_ui <- function(id) {
       menuItem(
         "Basis of Record",
         tabName = "Basis of Record",
-        icon = icon("filter"),
+        icon = icon("discord"),
         div(
           selectInput(
             inputId = ns("s4"), label = "",
@@ -63,7 +63,7 @@ mod_bio_sidebar_ui <- function(id) {
       menuItem(
         "Year",
         tabName = "Year",
-        icon = icon("filter"),
+        icon = icon("uncharted"),
         div(
           dateRangeInput(
             inputId = ns("s5"), label = "",
@@ -75,7 +75,7 @@ mod_bio_sidebar_ui <- function(id) {
       menuItem(
         "Coordinates",
         tabName = "Coordinates",
-        icon = icon("filter"),
+        icon = icon("suse"),
         div(
           sliderInput(
             inputId = ns("s6"), label = "Select Latitude",
@@ -90,7 +90,7 @@ mod_bio_sidebar_ui <- function(id) {
       menuItem(
         "Administrative areas",
         tabName = "Administrative areas",
-        icon = icon("filter"),
+        icon = icon("react"),
         div(
           selectInput(
             inputId = ns("s7"), label = "Administrative areas",
@@ -103,7 +103,7 @@ mod_bio_sidebar_ui <- function(id) {
       menuItem(
         "Country or Area",
         tabName = "Country or Area",
-        icon = icon("filter"),
+        icon = icon("pagelines"),
         div(
           selectInput(
             inputId = ns("s8"), label = "",
@@ -116,7 +116,7 @@ mod_bio_sidebar_ui <- function(id) {
       menuItem(
         "Continent",
         tabName = "Continent",
-        icon = icon("filter"),
+        icon = icon("docker"),
         div(
           selectInput(
             inputId = ns("s9"), label = "",
@@ -129,7 +129,7 @@ mod_bio_sidebar_ui <- function(id) {
       menuItem(
         "Publisher",
         tabName = "Publisher",
-        icon = icon("filter"),
+        icon = icon("medium"),
         div(
           selectInput(
             inputId = ns("s10"), label = "",

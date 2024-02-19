@@ -10,7 +10,7 @@ source("R/bio_get_count.R")
 # source("R/mod_bio_login.R")
 
 ui <- dashboardPage(
-  skin = "black",
+  skin = "green",
   title = "Biodiversity",
   dashboardHeader(
     title = span("Biodiversity"),

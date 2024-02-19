@@ -7,7 +7,7 @@
     margin: 0px 10px 14px 20px;
     text-align: left;
     color: white;
-    background: #727477;
+    background: #2E8B57;
     text-indent: 4px;
     vertical-align: middle;
     border-radius: 0px;
@@ -20,7 +20,7 @@
     transform: translate3d(0, 0, 0);
 }
 .btn-success:hover {
-    background-color:#d1351b;
+    background-color:#2E8B57;
     font-size: 18px;
     font-family: inherit;
     padding: 5px 12px;
@@ -46,7 +46,7 @@
     margin: 0px 10px 14px 20px;
     text-align: left;
     color: white;
-    background: #d1351b;
+    background: #2E8B57;
     text-indent: 4px;
     vertical-align: middle;
     border-radius: 0px;
@@ -79,19 +79,20 @@
 }
 #sidebar_button {
     height: 55px;
+    color: green;
 }
 section.sidebar .shiny-bound-input.action-button, section.sidebar .shiny-bound-input.action-link {
     margin: auto;
     display: block;
 }
 .btn-danger {
-    background-color: #d1351b;
+    background-color: #2E8B57;
     border-color: #d1351b;
     height: 55px;
     width: 300px;
     border-radius: 0;
     position: relative;
-    font-size: 18px;
+    font-size: 20px;
 }
 .btn-primary {
     background-color: darkgrey;
@@ -104,10 +105,10 @@ section.sidebar .shiny-bound-input.action-button, section.sidebar .shiny-bound-i
     font-size: 18px;
 }
 .btn-primary:hover {
-    background-color: #d1351b;
-    border-color: #d1351b;
+    background-color: #2E8B57;
+    border-color: #2E8B57;
     color: white;
-    border-color: #d1351b;
+    border-color: #2E8B57;
 
 }
 .fa.fa-user, .fa.fa-thumbs-o-up, .fa.fa-flask.flask-box, .fa.fa-spinner.spinner-box {

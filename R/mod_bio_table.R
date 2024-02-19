@@ -45,6 +45,24 @@ mod_bio_table_server <- function(id) {
         filter(Continent %in% input$s9) %>%
         filter(`Rights Holder` %in% input$s10)
     })
+    
+    
+    observe({
+      
+      shinyWidgets::updatePickerInput(session, "colselect",
+                                      choices = c(names(occd())),
+                                      selected = c(names(occd())[names(occd()) %in% c("Scientific Name","Country","Coordinates","Event Date","`Basis Of Record`","`Occurrence Identifier`","Kingdom","Higher Classification","Individual Count","Family","Taxon Rank")]  )   ,
+                                      options = shinyWidgets::pickerOptions(
+                                        actionsBox = TRUE,
+                                        title = "Select Columns to Display",
+                                        header = "Select Columns"
+                                      ),
+                                      choicesOpt = list(
+                                        style = rep(("color: black; background: lightgrey; font-weight: bold;"),1000))
+      )
+      
+    })
+    
 
     observeEvent(input$colselect, {
       # Output Table
@@ -59,5 +77,11 @@ mod_bio_table_server <- function(id) {
           ))
       })
     })
+    
+    observeEvent(input$reset, {
+      shinyjs::reset("sidebar")
+    })
+    
+    
   })
 }

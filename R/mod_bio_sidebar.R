@@ -6,7 +6,7 @@ mod_bio_sidebar_ui <- function(id) {
   div(
     width = 300,
     div(class = "inlay", style = "height:15px;width:100%;background-color:#ecf0f5"),
-    div(id = "sidebar", sidebarMenu(
+    div(id = ns("sidebar"), sidebarMenu(
       div(
         id = "sidebar_button",
         bsButton(
@@ -83,8 +83,8 @@ mod_bio_sidebar_ui <- function(id) {
         )
       ),
       menuItem(
-        "Administrative areas (gadm org)",
-        tabName = "Administrative areas (gadm org)",
+        "Administrative areas",
+        tabName = "Administrative areas",
         icon = icon("filter"),
         div(
           selectInput(

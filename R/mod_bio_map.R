@@ -40,9 +40,11 @@ mod_bio_map_server <- function(id) {
         ungroup()
 
 
-      leaflet() %>%
+        leaflet() %>%
         addTiles() %>%
         addMarkers(data = map, lng = map$Long, lat = map$Lat, popup = map$Country)
     })
+    
+    
   })
 }

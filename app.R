@@ -2,6 +2,9 @@ library(shiny)
 source("global.R", local = T)
 source("R/mod_bio_map.R")
 source("R/mod_bio_sidebar.R")
+source("R/mod_bio_taxonomy.R")
+source("R/mod_bio_matrix.R")
+#source("R/mod_bio_login.R")
 
 ui <- dashboardPage(
   skin = "black",
@@ -34,7 +37,10 @@ ui <- dashboardPage(
       width = NULL,
       height = 400,
       mod_bio_table_ui("bio_table_ui_1"),
-      mod_bio_map_ui("bio_table_ui_1")
+      mod_bio_taxonomy_ui("bio_table_ui_1"),
+      mod_bio_map_ui("bio_table_ui_1"),
+      mod_bio_matrix_ui("bio_table_ui_1")
+      #,mod_bio_login_ui("bio_login_ui_1")
     )
   )
 )
@@ -44,7 +50,11 @@ ui <- dashboardPage(
 
 server <- function(input, output, session) {
   mod_bio_table_server("bio_table_ui_1")
+  mod_bio_taxonomy_server("bio_table_ui_1")
   mod_bio_map_server("bio_table_ui_1")
+  mod_bio_matrix_server("bio_table_ui_1")
+  
+
 }
 
 shinyApp(ui = ui, server = server)

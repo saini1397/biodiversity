@@ -10,14 +10,14 @@ avoid reimport of CSV.
 
 ## Access
 
-The {Biodiversity Application} application is deployed at both shinyapps.io and Amazon AWS. Links to Application is provided below.
+The {Biodiversity Application} application is deployed to shinyapps.io. Link to Application is provided below.
 
 ``` r
-cdiscdata.io
+https://cdiscdata.shinyapps.io/biodiversity/
 ```
 
 ``` r
-cdiscdata.io/biodiversity/aws
+
 ```
 
 The {Biodiversity Application} package could be accessed locally by cloning the [GitHub repository](https://github.com/saini1397/ installing locally.

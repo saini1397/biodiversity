@@ -1,7 +1,7 @@
 mod_bio_map_ui <- function(id) {
   ns <- NS(id)
   tabPanel(
-    useShinyjs(),
+    useShinyjs() ,
     title = "Map",
     withSpinner(
       leafletOutput(ns("plotmap_output"), height = 600),

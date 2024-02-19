@@ -8,7 +8,7 @@ mod_bio_table_ui <- function(id) {
         width = 4,
         shinyWidgets::pickerInput(
           inputId = ns("colselect"), label = "Select Columns:",
-          choices = c("Scientific Name", "Country", "Coordinates"),
+          choices = c("Scientific Name","Country", "Coordinates"),
           multiple = TRUE,
           selected = NULL,
           options = shinyWidgets::pickerOptions(

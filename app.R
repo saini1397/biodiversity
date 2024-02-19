@@ -1,7 +1,7 @@
 # Load All Packages and R Scripts
 
 library(shiny)
-source("global.R", local = T)
+source("global.R")
 source("R/mod_bio_map.R")
 source("R/mod_bio_sidebar.R")
 source("R/mod_bio_taxonomy.R")

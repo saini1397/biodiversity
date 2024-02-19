@@ -11,11 +11,11 @@ my_packages <- c("rsconnect","usethis", "devtools", "testthat", "labelled", "hig
 
 # (.packages()) - To check the loaded libraries.
 # Load All Required Libraries
-lapply(my_packages, require, character.only = TRUE)
+lapply(my_packages, library, character.only = TRUE)
 
 # Get the data
 
-occ <- readRDS("occurence.rds") %>% mutate(
+occ <- readRDS("data/occurence.rds") %>% mutate(
   Coordinates = paste0(latitudeDecimal, "N, ", longitudeDecimal, "E"),
   adminarea = paste0(country, " - ", countryCode),
   Class = if_else(grepl("|", higherClassification), str_to_title(word(family, 1, sep = "\\|")), higherClassification),

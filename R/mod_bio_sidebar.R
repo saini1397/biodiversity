@@ -1,8 +1,13 @@
+#' R Module for the Biodiversity Sidebar Panel.
+#'
+#' @description
+#' R Module for the Biodiversity Sidebar Panel .
+#'
+#' @import shiny
+#' @rdname mod_bio_sidebar
+
 mod_bio_sidebar_ui <- function(id) {
   ns <- NS(id)
-
-
-
   div(
     width = 300,
     div(class = "inlay", style = "height:15px;width:100%;background-color:#ecf0f5"),

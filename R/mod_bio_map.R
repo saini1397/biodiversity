@@ -1,7 +1,15 @@
+#' R Module for the Biodiversity Map Tab Panel.
+#'
+#' @description
+#' R Module for the Biodiversity Map Tab Panel .
+#'
+#' @import shiny
+#' @rdname mod_bio_map
+
 mod_bio_map_ui <- function(id) {
   ns <- NS(id)
   tabPanel(
-    useShinyjs() ,
+    useShinyjs(),
     title = "Map",
     withSpinner(
       leafletOutput(ns("plotmap_output"), height = 600),
@@ -40,11 +48,9 @@ mod_bio_map_server <- function(id) {
         ungroup()
 
 
-        leaflet() %>%
+      leaflet() %>%
         addTiles() %>%
         addMarkers(data = map, lng = map$Long, lat = map$Lat, popup = map$Country)
     })
-    
-    
   })
 }

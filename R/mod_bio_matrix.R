@@ -1,3 +1,11 @@
+#' R Module for the Biodiversity Metrices Tab Panel.
+#'
+#' @description
+#' R Module for the Biodiversity Metrices Tab Panel .
+#'
+#' @import shiny
+#' @rdname mod_bio_matrix
+
 mod_bio_matrix_ui <- function(id) {
   ns <- NS(id)
   tabPanel(
@@ -54,10 +62,12 @@ mod_bio_matrix_server <- function(id) {
     output$bar1 <- renderPlotly({
       bar <- occd() %>%
         mutate(month = format(`Event Date`, format = "%B"))
-      
-      
-      bar1 <- bio_get_count(df=bar,
-                            group_var=month)
+
+
+      bar1 <- bio_get_count(
+        df = bar,
+        group_var = month
+      )
 
 
 
@@ -85,8 +95,10 @@ mod_bio_matrix_server <- function(id) {
     output$bar2 <- renderPlotly({
       bar2 <- occd()
 
-      bar2 <- bio_get_count(df=bar2,
-                            group_var=License)
+      bar2 <- bio_get_count(
+        df = bar2,
+        group_var = License
+      )
 
 
       plotly::plot_ly(
@@ -113,9 +125,11 @@ mod_bio_matrix_server <- function(id) {
     output$bar3 <- renderPlotly({
       bar3 <- occd()
 
-      
-      bar3 <- bio_get_count(df=bar3,
-                            group_var=`Collection Code`)
+
+      bar3 <- bio_get_count(
+        df = bar3,
+        group_var = `Collection Code`
+      )
 
 
       plotly::plot_ly(
@@ -141,10 +155,12 @@ mod_bio_matrix_server <- function(id) {
 
 
     output$pie1 <- renderPlotly({
-      pie1 <- occd() 
-        
-      pie1 <- bio_get_count(df=pie1,
-                            group_var=`Basis Of Record`)
+      pie1 <- occd()
+
+      pie1 <- bio_get_count(
+        df = pie1,
+        group_var = `Basis Of Record`
+      )
 
 
       plotly::plot_ly(

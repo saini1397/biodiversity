@@ -1,3 +1,11 @@
+#' R Module for the Biodiversity Table Panel.
+#'
+#' @description
+#' R Module for the Biodiversity Table Panel .
+#'
+#' @import shiny
+#' @rdname mod_bio_table
+
 mod_bio_table_ui <- function(id) {
   ns <- NS(id)
   tabPanel(
@@ -8,7 +16,7 @@ mod_bio_table_ui <- function(id) {
         width = 4,
         shinyWidgets::pickerInput(
           inputId = ns("colselect"), label = "Select Columns:",
-          choices = c("Scientific Name","Country", "Coordinates"),
+          choices = c("Scientific Name", "Country", "Coordinates"),
           multiple = TRUE,
           selected = NULL,
           options = shinyWidgets::pickerOptions(
@@ -45,24 +53,23 @@ mod_bio_table_server <- function(id) {
         filter(Continent %in% input$s9) %>%
         filter(`Rights Holder` %in% input$s10)
     })
-    
-    
+
+
     observe({
-      
       shinyWidgets::updatePickerInput(session, "colselect",
-                                      choices = c(names(occd())),
-                                      selected = c(names(occd())[names(occd()) %in% c("Scientific Name","Country","Coordinates","Event Date","`Basis Of Record`","`Occurrence Identifier`","Kingdom","Higher Classification","Individual Count","Family","Taxon Rank")]  )   ,
-                                      options = shinyWidgets::pickerOptions(
-                                        actionsBox = TRUE,
-                                        title = "Select Columns to Display",
-                                        header = "Select Columns"
-                                      ),
-                                      choicesOpt = list(
-                                        style = rep(("color: black; background: lightgrey; font-weight: bold;"),1000))
+        choices = c(names(occd())),
+        selected = c(names(occd())[names(occd()) %in% c("Scientific Name", "Country", "Coordinates", "Event Date", "`Basis Of Record`", "`Occurrence Identifier`", "Kingdom", "Higher Classification", "Individual Count", "Family", "Taxon Rank")]),
+        options = shinyWidgets::pickerOptions(
+          actionsBox = TRUE,
+          title = "Select Columns to Display",
+          header = "Select Columns"
+        ),
+        choicesOpt = list(
+          style = rep(("color: black; background: lightgrey; font-weight: bold;"), 1000)
+        )
       )
-      
     })
-    
+
 
     observeEvent(input$colselect, {
       # Output Table
@@ -77,11 +84,9 @@ mod_bio_table_server <- function(id) {
           ))
       })
     })
-    
+
     observeEvent(input$reset, {
       shinyjs::reset("sidebar")
     })
-    
-    
   })
 }
